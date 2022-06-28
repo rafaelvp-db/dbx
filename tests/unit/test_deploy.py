@@ -9,7 +9,7 @@ from databricks_cli.sdk import JobsService, ApiClient
 from requests import HTTPError
 
 from dbx.api.config_reader import ConfigReader
-from dbx.api.configure import EnvironmentInfo, ConfigurationManager
+from dbx.api.project import EnvironmentInfo, ConfigurationManager
 from dbx.api.storage.mlflow_based import MlflowStorageConfigurationManager
 from dbx.commands.deploy import deploy, _update_job, _log_dbx_file, _create_job, _preprocess_jobs  # noqa
 from dbx.utils.json import JsonUtils

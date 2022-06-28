@@ -13,7 +13,7 @@ from databricks_cli.jobs.api import JobsService
 from databricks_cli.sdk.api_client import ApiClient
 from databricks_cli.utils import CONTEXT_SETTINGS
 
-from dbx.api.configure import ConfigurationManager
+from dbx.api.project import ConfigurationManager
 from dbx.utils.common import (
     generate_filter_string,
     prepare_environment,

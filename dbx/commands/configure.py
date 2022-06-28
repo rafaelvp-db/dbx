@@ -5,7 +5,7 @@ from databricks_cli.configure.config import debug_option
 from databricks_cli.configure.provider import DEFAULT_SECTION
 from databricks_cli.utils import CONTEXT_SETTINGS
 
-from dbx.api.configure import ConfigurationManager, EnvironmentInfo
+from dbx.api.project import ConfigurationManager, EnvironmentInfo
 from dbx.utils import dbx_echo
 from dbx.utils.options import environment_option, profile_option
 

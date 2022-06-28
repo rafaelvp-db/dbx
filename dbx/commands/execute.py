@@ -11,6 +11,7 @@ from databricks_cli.utils import CONTEXT_SETTINGS
 from dbx.api.client_provider import ApiV1Client
 from dbx.api.config_reader import ConfigReader
 from dbx.api.context import LocalContextManager
+from dbx.models.context import ContextInfo
 from dbx.utils import dbx_echo
 from dbx.utils.adjuster import walk_content, adjust_path
 from dbx.utils.common import (
@@ -251,15 +252,15 @@ def _is_context_available(v1_client: ApiV1Client, cluster_id: str, context_id: s
 
 def get_context_id(v1_client: ApiV1Client, cluster_id: str, language: str):
     dbx_echo("Preparing execution context")
-    lock_context_id = LocalContextManager.get_context()
+    context = LocalContextManager.get_context()
 
-    if _is_context_available(v1_client, cluster_id, lock_context_id):
+    if _is_context_available(v1_client, cluster_id, context.context_id):
         dbx_echo("Existing context is active, using it")
-        return lock_context_id
+        return context.context_id
     else:
         dbx_echo("Existing context is not active, creating a new one")
         context_id = create_context(v1_client, cluster_id, language)
-        LocalContextManager.set_context(context_id)
+        LocalContextManager.set_context(ContextInfo(context_id=context_id))
         dbx_echo("New context prepared, ready to use it")
         return context_id
 
